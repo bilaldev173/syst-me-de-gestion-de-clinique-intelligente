@@ -1,42 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Portal</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-    <div class="container small">
-        <div class="card">
-            <h2>Patient Portal</h2>
-            <form id="patient-login-form">
-                <label>Email
-                    <input type="email" id="patient-email" placeholder="patient@clinic.com" required>
-                </label>
-                <label>Password
-                    <input type="password" id="patient-password" placeholder="••••••••" required>
-                </label>
-                <button class="btn" type="submit">Login</button>
-            </form>
-        </div>
+body {
+  background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+}
 
-        <div class="card mt-20">
-            <h3>Find a Doctor</h3>
-            <form id="doctor-search-form">
-                <label>Doctor Name
-                    <input type="text" id="search-name" placeholder="Enter doctor name">
-                </label>
-                <label>Specialty
-                    <input type="text" id="search-specialty" placeholder="Cardiology">
-                </label>
-                <button class="btn" type="submit">Search</button>
-            </form>
+button,
+input,
+select,
+textarea {
+  font-family: 'Inter', sans-serif;
+}
 
-            <div id="doctor-search-results" class="results"></div>
-        </div>
-    </div>
+#doctor-results .book-doctor,
+#doctor-appointments-list > div,
+#doctor-form button,
+#prescription-form button,
+#search-doctors-btn,
+#open-prescription-modal {
+  transition: all 0.2s ease;
+}
 
-    <script src="/js/app.js"></script>
-</body>
-</html>
+#doctor-results .book-doctor:hover,
+#doctor-form button:hover,
+#prescription-form button:hover,
+#search-doctors-btn:hover,
+#open-prescription-modal:hover {
+  transform: translateY(-1px);
+}
+
+.fixed.hidden {
+  display: none !important;
+}
+
+.fixed.flex {
+  display: flex !important;
+}

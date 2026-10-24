@@ -1,45 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Portal</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-    <div class="container small">
-        <div class="card">
-            <h2>Doctor Portal</h2>
-            <form id="doctor-login-form">
-                <label>Email
-                    <input type="email" id="doctor-login-email" placeholder="doctor@clinic.com" required>
-                </label>
-                <label>Password
-                    <input type="password" id="doctor-login-password" placeholder="••••••••" required>
-                </label>
-                <button class="btn" type="submit">Login</button>
-            </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Portal | Smart Clinic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            boxShadow: {
+              soft: '0 10px 30px rgba(15, 23, 42, 0.08)',
+              card: '0 18px 45px rgba(2, 132, 199, 0.12)',
+            },
+            colors: {
+              clinic: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                900: '#082f49',
+              },
+              tealmed: '#0d9488',
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+    <div class="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+      <header class="rounded-3xl border border-slate-200 bg-white/90 shadow-soft backdrop-blur-sm">
+        <div class="flex items-center justify-between px-5 py-4 sm:px-8">
+          <div class="flex items-center gap-3">
+            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-clinic-600 to-tealmed text-lg font-bold text-white shadow-card">+</div>
+            <div>
+              <p class="text-[10px] font-semibold uppercase tracking-[0.24em] text-clinic-600">Clinic Portal</p>
+              <h1 class="text-lg font-extrabold tracking-tight text-slate-900">Doctor Dashboard</h1>
+            </div>
+          </div>
+          <nav class="hidden items-center gap-8 md:flex">
+            <a href="/index.html" class="text-sm font-semibold text-slate-700 transition hover:text-clinic-600">Home</a>
+            <a href="/admin.html" class="text-sm font-semibold text-slate-700 transition hover:text-clinic-600">Admin</a>
+            <a href="/doctor.html" class="text-sm font-semibold text-clinic-700">Doctor</a>
+            <a href="/patient.html" class="text-sm font-semibold text-slate-700 transition hover:text-clinic-600">Patient</a>
+          </nav>
         </div>
+      </header>
 
-        <div class="card mt-20">
-            <h3>Today's Appointments</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Patient</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="doctor-appointments-body">
-                    <tr>
-                        <td colspan="3">No appointments yet.</td>
-                    </tr>
-                </tbody>
-            </table>
+      <main class="mt-8 space-y-8">
+        <section class="grid gap-6 md:grid-cols-3">
+          <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-soft">
+            <p class="text-sm text-slate-500">Today's Patients</p>
+            <div class="mt-3 flex items-end justify-between">
+              <span class="text-3xl font-black text-slate-900">18</span>
+              <span class="rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-700">On track</span>
+            </div>
+          </div>
+          <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-soft">
+            <p class="text-sm text-slate-500">Pending Prescriptions</p>
+            <div class="mt-3 flex items-end justify-between">
+              <span class="text-3xl font-black text-slate-900">06</span>
+              <span class="rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-700">Review</span>
+            </div>
+          </div>
+          <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-soft">
+            <p class="text-sm text-slate-500">Available Hours</p>
+            <div class="mt-3 flex items-end justify-between">
+              <span class="text-3xl font-black text-slate-900">12h</span>
+              <span class="rounded-full bg-clinic-100 px-2 py-1 text-xs font-semibold text-clinic-700">Open</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="mb-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-clinic-600">Schedule</p>
+                <h3 class="mt-1 text-2xl font-black text-slate-900">Today's Appointments</h3>
+              </div>
+              <button type="button" class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-700">Filter</button>
+            </div>
+
+            <div class="space-y-4" id="doctor-appointments-list">
+              <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-clinic-200 hover:bg-clinic-50">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-clinic-100 font-bold text-clinic-700">JS</div>
+                  <div>
+                    <p class="font-semibold text-slate-900">John Smith</p>
+                    <p class="text-sm text-slate-500">Follow-up consultation</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="font-semibold text-slate-900">09:30 AM</p>
+                  <p class="text-xs font-medium text-emerald-700">Confirmed</p>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-clinic-200 hover:bg-clinic-50">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 font-bold text-emerald-700">MR</div>
+                  <div>
+                    <p class="font-semibold text-slate-900">Maria Ruiz</p>
+                    <p class="text-sm text-slate-500">Cardiac review</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="font-semibold text-slate-900">11:15 AM</p>
+                  <p class="text-xs font-medium text-amber-700">Pending</p>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-clinic-200 hover:bg-clinic-50">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100 font-bold text-amber-700">AN</div>
+                  <div>
+                    <p class="font-semibold text-slate-900">Aisha Noor</p>
+                    <p class="text-sm text-slate-500">New patient checkup</p>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <p class="font-semibold text-slate-900">01:00 PM</p>
+                  <p class="text-xs font-medium text-sky-700">Booked</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="mb-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">Prescription</p>
+                <h3 class="mt-1 text-2xl font-black text-slate-900">Write Prescription</h3>
+              </div>
+              <button type="button" id="open-prescription-modal" class="rounded-xl bg-gradient-to-r from-emerald-600 to-tealmed px-4 py-2 text-sm font-semibold text-white shadow-card">New</button>
+            </div>
+
+            <form id="prescription-form" class="space-y-5">
+              <div class="space-y-2">
+                <label for="patient-select" class="text-sm font-medium text-slate-700">Patient</label>
+                <select id="patient-select" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-clinic-500 focus:bg-white focus:ring-4 focus:ring-clinic-100">
+                  <option>John Smith</option>
+                  <option>Maria Ruiz</option>
+                  <option>Aisha Noor</option>
+                </select>
+              </div>
+
+              <div class="space-y-2">
+                <label for="medicine-name" class="text-sm font-medium text-slate-700">Medication</label>
+                <input id="medicine-name" type="text" placeholder="Amoxicillin 500mg" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-clinic-500 focus:bg-white focus:ring-4 focus:ring-clinic-100" required />
+              </div>
+
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="dosage" class="text-sm font-medium text-slate-700">Dosage</label>
+                  <input id="dosage" type="text" placeholder="1 tablet" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-clinic-500 focus:bg-white focus:ring-4 focus:ring-clinic-100" required />
+                </div>
+                <div class="space-y-2">
+                  <label for="frequency" class="text-sm font-medium text-slate-700">Frequency</label>
+                  <input id="frequency" type="text" placeholder="Twice daily" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-clinic-500 focus:bg-white focus:ring-4 focus:ring-clinic-100" required />
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label for="notes" class="text-sm font-medium text-slate-700">Notes</label>
+                <textarea id="notes" rows="4" placeholder="Add prescription instructions and reminders..." class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none transition focus:border-clinic-500 focus:bg-white focus:ring-4 focus:ring-clinic-100"></textarea>
+              </div>
+
+              <button type="submit" class="inline-flex items-center rounded-xl bg-gradient-to-r from-emerald-600 to-tealmed px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:-translate-y-0.5 hover:shadow-lg">Save Prescription</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="prescription-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 p-4">
+      <div class="w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl">
+        <div class="mb-5 flex items-center justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">Quick action</p>
+            <h3 class="mt-1 text-2xl font-black text-slate-900">New Prescription</h3>
+          </div>
+          <button type="button" class="close-modal rounded-full bg-slate-100 p-2 text-slate-600 transition hover:bg-slate-200">✕</button>
         </div>
+        <p class="mb-4 text-sm text-slate-600">This modal demonstrates the workflow for adding a new prescription to an existing patient record.</p>
+        <button type="button" class="w-full rounded-xl bg-gradient-to-r from-emerald-600 to-tealmed px-5 py-3 text-sm font-semibold text-white shadow-card">Review and Submit</button>
+      </div>
     </div>
 
     <script src="/js/app.js"></script>
-</body>
+  </body>
 </html>
