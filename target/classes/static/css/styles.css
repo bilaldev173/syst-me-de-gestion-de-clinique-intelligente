@@ -1,0 +1,35 @@
+body {
+  background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: 'Inter', sans-serif;
+}
+
+#doctor-results .book-doctor,
+#doctor-appointments-list > div,
+#doctor-form button,
+#prescription-form button,
+#search-doctors-btn,
+#open-prescription-modal {
+  transition: all 0.2s ease;
+}
+
+#doctor-results .book-doctor:hover,
+#doctor-form button:hover,
+#prescription-form button:hover,
+#search-doctors-btn:hover,
+#open-prescription-modal:hover {
+  transform: translateY(-1px);
+}
+
+.fixed.hidden {
+  display: none !important;
+}
+
+.fixed.flex {
+  display: flex !important;
+}
