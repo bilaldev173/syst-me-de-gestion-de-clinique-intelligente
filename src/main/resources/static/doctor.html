@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Portal</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container small">
+        <div class="card">
+            <h2>Doctor Portal</h2>
+            <form id="doctor-login-form">
+                <label>Email
+                    <input type="email" id="doctor-login-email" placeholder="doctor@clinic.com" required>
+                </label>
+                <label>Password
+                    <input type="password" id="doctor-login-password" placeholder="••••••••" required>
+                </label>
+                <button class="btn" type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="card mt-20">
+            <h3>Today's Appointments</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="doctor-appointments-body">
+                    <tr>
+                        <td colspan="3">No appointments yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

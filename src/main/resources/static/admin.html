@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container small">
+        <div class="card">
+            <h2>Admin Portal</h2>
+            <form id="admin-login-form">
+                <label>Email
+                    <input type="email" id="admin-email" placeholder="admin@clinic.com" required>
+                </label>
+                <label>Password
+                    <input type="password" id="admin-password" placeholder="••••••••" required>
+                </label>
+                <button class="btn" type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="card mt-20">
+            <h3>Add Doctor</h3>
+            <form id="doctor-form">
+                <label>Name
+                    <input type="text" id="doctor-name" placeholder="Dr. Emma Smith" required>
+                </label>
+                <label>Specialty
+                    <input type="text" id="doctor-specialty" placeholder="Cardiology" required>
+                </label>
+                <label>Email
+                    <input type="email" id="doctor-email" placeholder="doctor@clinic.com" required>
+                </label>
+                <button class="btn" type="submit">Add Doctor</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
